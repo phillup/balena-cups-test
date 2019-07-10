@@ -1,4 +1,4 @@
-FROM balenalib/amd64-ubuntu:xenial
+FROM balenalib/intel-nuc-debian:stretch-run
 
 # Install the packages we need. Avahi will be included
 RUN apt update && apt install -y \
@@ -15,7 +15,10 @@ COPY run.sh /
 ENV UDEV 1
 
 # Add cupsd.conf file
-COPY cupsd.conf /etc/cups/cupsd.conf
+COPY cups/cupsd.conf /etc/cups/cupsd.conf
 
-#Run Script
+# Add avahi conf file
+COPY avahi/avahi-daemon.conf /etc/avahi/avahi-daemon.conf
+
+# Run Script
 CMD bash run.sh

@@ -3,7 +3,8 @@ volumes:
   cups:
 services:
   cups:
-    build: ./cups
+    build:
+      context: .
     privileged: true
     restart: always
     network_mode: "host"
